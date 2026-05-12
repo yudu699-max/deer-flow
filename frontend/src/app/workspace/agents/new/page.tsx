@@ -154,14 +154,13 @@ export default function NewAgentPage() {
         return;
       }
     } catch (err) {
-      if (
-        err instanceof AgentNameCheckError &&
-        err.reason === "backend_unreachable"
-      ) {
-        setNameError(t.agents.nameStepNetworkError);
-      } else {
-        setNameError(t.agents.nameStepCheckError);
-      }
+      setNameError(
+        getCreateAgentErrorMessage(
+          err,
+          t.agents.nameStepNetworkError,
+          t.agents.nameStepCheckError,
+        ),
+      );
       return;
     } finally {
       setIsCheckingName(false);

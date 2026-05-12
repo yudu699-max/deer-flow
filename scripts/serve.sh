@@ -222,11 +222,11 @@ echo "  Mode: $MODE_LABEL"
 echo ""
 echo "  Services:"
 if ! $GATEWAY_MODE; then
-    echo "    LangGraph   → localhost:2024  (agent runtime)"
+    echo "    LangGraph   → 127.0.0.1:2024  (agent runtime)"
 fi
-echo "    Gateway     → localhost:8001  (REST API$(if $GATEWAY_MODE; then echo " + agent runtime"; fi))"
-echo "    Frontend    → localhost:3000  (Next.js)"
-echo "    Nginx       → localhost:2026  (reverse proxy)"
+echo "    Gateway     → 127.0.0.1:8001  (REST API$(if $GATEWAY_MODE; then echo " + agent runtime"; fi))"
+echo "    Frontend    → 127.0.0.1:3000  (Next.js)"
+echo "    Nginx       → 127.0.0.1:2026  (reverse proxy)"
 echo ""
 
 # ── Cleanup handler ──────────────────────────────────────────────────────────
@@ -260,7 +260,7 @@ run_service() {
         [ -f "$logfile" ] && tail -20 "$logfile"
         cleanup
     }
-    echo "✓ $name started on localhost:$port"
+    echo "✓ $name started on 127.0.0.1:$port"
 }
 
 # ── Start services ───────────────────────────────────────────────────────────
@@ -307,7 +307,7 @@ echo "=========================================="
 echo "  ✓ DeerFlow is running!  [$MODE_LABEL]"
 echo "=========================================="
 echo ""
-echo "  🌐 http://localhost:2026"
+echo "  🌐 http://127.0.0.1:2026"
 echo ""
 if $GATEWAY_MODE; then
     echo "  Routing: Frontend → Nginx → Gateway (embedded runtime)"
