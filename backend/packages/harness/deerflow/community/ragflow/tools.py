@@ -6,7 +6,6 @@ import json
 import logging
 import os
 from typing import Any
-
 import httpx
 from langchain.tools import tool
 
@@ -17,45 +16,46 @@ logger = logging.getLogger(__name__)
 
 def _query_ragflow(
     question: str,
-    dataset_id: str,
+    dataset_ids: list[str],  # 修改为接收 ID 列表
     api_url: str,
     api_key: str,
     topk: int = 5,
 ) -> dict[str, Any]:
     """
-    使用 RAGFlow 标准 API v1 进行检索。
+    使用 RAGFlow 官方标准 API v1 进行检索。
     """
-    # 尝试标准的 v1 检索接口
     url = f"{api_url.rstrip('/')}/api/v1/retrieval"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
+    
+    # 使用传入的 ID 列表
     payload = {
         "question": question,
-        "dataset_ids": [dataset_id],  # 修正：RAGFlow 最新 API 要求使用 dataset_ids
+        "dataset_ids": dataset_ids,
         "page": 1,
         "page_size": topk,
     }
 
+    cross_langs = os.getenv("RAGFLOW_CROSS_LANGUAGES")
+    if cross_langs:
+        payload["cross_languages"] = [lang.strip() for lang in cross_langs.split(",")]
+
     try:
         with httpx.Client(timeout=30.0) as client:
             response = client.post(url, headers=headers, json=payload)
-            # 如果 v1 接口报 404/405，尝试兼容旧路径
-            if response.status_code in (404, 405):
-                old_url = f"{api_url.rstrip('/')}/retrieval/{dataset_id}/search"
-                response = client.post(old_url, headers=headers, json={"question": question, "topk": topk})
             
-            res_json = response.json()
-            # 如果返回 code 102 提示缺少 dataset_ids，尝试兼容旧的 kb_ids 字段
-            if res_json.get("code") == 102:
-                payload["kb_ids"] = [dataset_id]
-                del payload["dataset_ids"]
-                response = client.post(url, headers=headers, json=payload)
-                res_json = response.json()
+            # 安全检查：如果状态码错误，拦截并报错
+            if response.status_code >= 400:
+                logger.error(f"RAGFlow error {response.status_code}: {response.text[:500]}")
+                return {"error": f"服务器返回错误 {response.status_code}"}
 
-            response.raise_for_status()
-            return res_json
+            try:
+                return response.json()
+            except Exception:
+                logger.error(f"Failed to parse RAGFlow JSON response: {response.text[:500]}")
+                return {"error": "API 响应格式错误（非 JSON）"}
     except Exception as e:
         logger.error(f"Failed to search RAGFlow at {url}: {e}")
         return {"error": str(e)}
@@ -65,31 +65,41 @@ def _query_ragflow(
 def ragflow_search_tool(
     question: str,
     dataset_id: str | None = None,
-    topk: int = 5,
+    topk: int = 10,
 ) -> str:
-    """搜索知识库以获取相关文档和信息。当你需要回答关于公司政策、流程、技术文档或任何存储在知识库中的内容时，请使用此工具。
+    """搜索一个或多个知识库以获取相关文档和信息。当你需要回答关于公司政策、流程、技术文档或任何存储在知识库中的内容时，请使用此工具。
 
     Args:
         question: 搜索关键词或用户的问题。
-        dataset_id: 可选。要查询的具体数据集 ID。如果未提供，将使用默认配置。
-        topk: 返回的相关结果数量。默认为 5。
+        dataset_id: 可选。要查询的一个或多个数据集 ID（多个 ID 用逗号分隔）。如果未提供，将使用环境变量 RAGFLOW_DATASET_ID。
+        topk: 返回的相关结果数量。默认为 10。
     """
-    # 彻底清理环境变量中的引号和空格
+    # 清理环境变量中的引号和空格
     api_url = os.getenv("RAGFLOW_API_URL", "").strip().strip("'\"").strip()
     api_key = os.getenv("RAGFLOW_API_KEY", "").strip().strip("'\"").strip()
     
-    if not dataset_id:
-        dataset_id = (os.getenv("RAGFLOW_DATASET_ID") or "d1ff449c4dad11f18e8135a5d5418d1d").strip().strip("'\"").strip()
+    # 1. 获取环境变量中的所有默认 ID，避免仅显式地传递第一个id
+    env_dataset_id = os.getenv("RAGFLOW_DATASET_ID") or "b4640b664dad11f18cc1c994647531c4"
+    env_ids = [id.strip().strip("'\"").strip() for id in env_dataset_id.split(",") if id.strip()]
+
+    # 2. 如果 Agent 传了额外的 ID，将其加入列表并去重
+    if dataset_id:
+        param_ids = [id.strip().strip("'\"").strip() for id in dataset_id.split(",") if id.strip()]
+        all_ids = list(set(env_ids + param_ids))
+    else:
+        all_ids = env_ids
+
+    logger.info(f"Final Dataset IDs for search: {all_ids}")
 
     if not api_url or not api_key:
-        return "错误: 未配置 RAGFLOW_API_URL 或 RAGFLOW_API_KEY 环境变量。"
+        return "Error: RAGFLOW_API_URL or RAGFLOW_API_KEY is not configured."
 
-    if not dataset_id:
-        return "错误: 未提供 dataset_id 且未配置默认数据集。"
+    if not all_ids:
+        return "Error: No valid Dataset IDs found."
 
     result = _query_ragflow(
         question=question,
-        dataset_id=dataset_id,
+        dataset_ids=all_ids,
         api_url=api_url,
         api_key=api_key,
         topk=topk,
@@ -128,10 +138,10 @@ def ragflow_search_tool(
             f"### 来源 {i}: {doc_name} (相关度: {score:.2%})\n"
             f"{content}\n"
         )
-
+# 组装最终返回给 Agent 的结果对象
     output = {
         "question": question,
-        "dataset_id": dataset_id,
+        "dataset_ids": all_ids,
         "count": len(chunks),
         "results": "\n---\n".join(formatted_results)
     }

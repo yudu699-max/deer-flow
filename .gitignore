@@ -21,6 +21,7 @@ __pycache__/
 venv/
 
 # Environment variables
+backend/.env
 .env
 
 # Configuration files
@@ -60,3 +61,4 @@ config.yaml.bak
 /frontend/playwright-report/
 .gstack/
 .worktrees
+backend/gateway.log
