@@ -1,18 +1,186 @@
 INFO:     Will watch for changes in these directories: ['D:\\AI\\test\\deer-flow\\backend']
 INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
-INFO:     Started reloader process [21160] using WatchFiles
-INFO:     Started server process [25104]
+INFO:     Started reloader process [16516] using WatchFiles
+D:\AI\test\deer-flow\backend\.venv\Lib\site-packages\langgraph\checkpoint\serde\encrypted.py:5: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+  from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+Your config.yaml (version 7) is outdated ¡ª the latest version is 9. Run `make config-upgrade` to merge new fields into your config.
+INFO:     Started server process [4160]
 INFO:     Waiting for application startup.
-2026-05-12 20:36:46 - app.gateway.app - INFO - Configuration loaded successfully
-2026-05-12 20:36:46 - app.gateway.app - INFO - Starting API Gateway on 0.0.0.0:8001
-2026-05-12 20:36:46 - deerflow.runtime.stream_bridge.async_provider - INFO - Stream bridge initialised: memory (queue_maxsize=256)
-2026-05-12 20:36:46 - deerflow.runtime.store.async_provider - INFO - Store: using AsyncSqliteStore (D:\AI\test\deer-flow\backend\.deer-flow\checkpoints.db)
-2026-05-12 20:36:46 - app.gateway.app - INFO - LangGraph runtime initialised
-2026-05-12 20:36:46 - app.channels.manager - INFO - ChannelManager started (max_concurrency=5)
-2026-05-12 20:36:46 - app.channels.service - INFO - ChannelService started with channels: []
-2026-05-12 20:36:46 - app.gateway.app - INFO - Channel service started: {'service_running': True, 'channels': {'discord': {'enabled': False, 'running': False}, 'feishu': {'enabled': False, 'running': False}, 'slack': {'enabled': False, 'running': False}, 'telegram': {'enabled': False, 'running': False}, 'wechat': {'enabled': False, 'running': False}, 'wecom': {'enabled': False, 'running': False}}}
-2026-05-12 20:36:46 - app.channels.manager - INFO - [Manager] dispatch loop started, waiting for inbound messages
+2026-05-14 11:05:36 - app.gateway.app - INFO - Configuration loaded successfully
+2026-05-14 11:05:36 - app.gateway.app - INFO - Starting API Gateway on 0.0.0.0:8001
+2026-05-14 11:05:36 - deerflow.runtime.stream_bridge.async_provider - INFO - Stream bridge initialised: memory (queue_maxsize=256)
+2026-05-14 11:05:36 - deerflow.persistence.engine - INFO - Persistence engine initialized: backend=sqlite
+2026-05-14 11:05:36 - deerflow.runtime.store.async_provider - INFO - Store: using AsyncSqliteStore (D:\AI\test\deer-flow\backend\.deer-flow\checkpoints.db)
+2026-05-14 11:05:36 - app.gateway.app - INFO - LangGraph runtime initialised
+2026-05-14 11:05:36 - app.gateway.app - INFO - ============================================================
+2026-05-14 11:05:36 - app.gateway.app - INFO -   First boot detected ¡ª no admin account exists.
+2026-05-14 11:05:36 - app.gateway.app - INFO -   Visit /setup to complete admin account creation.
+2026-05-14 11:05:36 - app.gateway.app - INFO - ============================================================
+2026-05-14 11:05:36 - app.channels.manager - INFO - ChannelManager started (max_concurrency=5)
+2026-05-14 11:05:36 - app.channels.service - INFO - ChannelService started with channels: []
+2026-05-14 11:05:36 - app.gateway.app - INFO - Channel service started: {'service_running': True, 'channels': {'dingtalk': {'enabled': False, 'running': False}, 'discord': {'enabled': False, 'running': False}, 'feishu': {'enabled': False, 'running': False}, 'slack': {'enabled': False, 'running': False}, 'telegram': {'enabled': False, 'running': False}, 'wechat': {'enabled': False, 'running': False}, 'wecom': {'enabled': False, 'running': False}}}
+2026-05-14 11:05:36 - app.channels.manager - INFO - [Manager] dispatch loop started, waiting for inbound messages
 INFO:     Application startup complete.
-INFO:     127.0.0.1:52089 - "GET /api/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53030 - "GET /api/v1/auth/setup-status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53030 - "GET /api/v1/auth/setup-status HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:53030 - "GET /api/v1/auth/setup-status HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:53031 - "GET /api/v1/auth/setup-status HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:53032 - "GET /api/v1/auth/setup-status HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:53033 - "GET /api/v1/auth/setup-status HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:53034 - "GET /api/v1/auth/setup-status HTTP/1.1" 429 Too Many Requests
+2026-05-14 11:05:54 - app.gateway.auth.config - WARNING - \u26a0 AUTH_JWT_SECRET is not set ¡ª using an auto-generated ephemeral secret. Sessions will be invalidated on restart. For production, add AUTH_JWT_SECRET to your .env file: python -c "import secrets; print(secrets.token_urlsafe(32))"
+INFO:     127.0.0.1:53038 - "POST /api/v1/auth/login/local HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53040 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53048 - "POST /api/threads/search HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53050 - "GET /api/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53058 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:06:05 - app.gateway.routers.threads - INFO - Thread created: 917dda4c-0e8c-497b-af6e-6317630239e2
+INFO:     127.0.0.1:53057 - "POST /api/threads HTTP/1.1" 200 OK
+2026-05-14 11:06:05 - deerflow.runtime.runs.manager - INFO - Run created: run_id=ca01d2c6-dfc6-4224-b749-310c7af3b588 thread_id=917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:06:05 - deerflow.runtime.runs.worker - INFO - Run ca01d2c6-dfc6-4224-b749-310c7af3b588: 'events' stream_mode not supported in gateway (requires astream_events + checkpoint callbacks). Skipping.
+INFO:     127.0.0.1:53064 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs/stream HTTP/1.1" 200 OK
+2026-05-14 11:06:05 - deerflow.runtime.runs.manager - INFO - Run ca01d2c6-dfc6-4224-b749-310c7af3b588 -> running
+2026-05-14 11:06:05 - deerflow.agents.lead_agent.agent - INFO - Create Agent(default) -> thinking_enabled: False, reasoning_effort: medium, model_name: deepseek-chat, is_plan_mode: False, subagent_enabled: False, max_concurrent_subagents: 3
+2026-05-14 11:06:06 - deerflow.tools.tools - INFO - Total tools loaded: 11, built-in tools: 2, MCP tools: 0, ACP tools: 0
+2026-05-14 11:06:07 - deerflow.runtime.runs.worker - INFO - Run ca01d2c6-dfc6-4224-b749-310c7af3b588: streaming with modes ['messages', 'values', 'custom', 'updates'] (requested: {'messages-tuple', 'values', 'events', 'custom', 'updates'})
+2026-05-14 11:06:08 - deerflow.agents.middlewares.dynamic_context_middleware - INFO - DynamicContextMiddleware: injecting full reminder (len=2203, has_memory=True) into first HumanMessage id='c75c3045-3265-4167-bb6e-9c53360b77ab'
+INFO:     127.0.0.1:53066 - "GET /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs?limit=10&offset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53068 - "GET /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs/ca01d2c6-dfc6-4224-b749-310c7af3b588/messages HTTP/1.1" 200 OK
+2026-05-14 11:06:08 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:06:14 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
 WARNING:  WatchFiles detected changes in 'packages\harness\deerflow\community\ragflow\__init__.py'. Reloading...
- 
+ INFO:     127.0.0.1:53248 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-05-14 11:06:45 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:06:45 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:06:45 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:18 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:19 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:07:50 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:50 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:50 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:50 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:50 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:07:50 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:07:50 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:07:53 - deerflow.agents.memory.queue - INFO - Memory update queued for thread 917dda4c-0e8c-497b-af6e-6317630239e2, queue size: 1
+2026-05-14 11:07:53 - deerflow.runtime.runs.manager - INFO - Run ca01d2c6-dfc6-4224-b749-310c7af3b588 -> success
+INFO:     127.0.0.1:53570 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53572 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:07:55 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53574 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/suggestions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53606 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-05-14 11:08:23 - deerflow.agents.memory.queue - INFO - Processing 1 queued memory updates
+2026-05-14 11:08:23 - deerflow.agents.memory.queue - INFO - Updating memory for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:08:24 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:08:30 - deerflow.agents.memory.storage - INFO - Memory saved to D:\AI\test\deer-flow\backend\.deer-flow\users\9f2eaf7f-b57a-4017-bbb0-5c96ec728e29\memory.json
+2026-05-14 11:08:30 - deerflow.agents.memory.queue - INFO - Memory updated successfully for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+INFO:     127.0.0.1:53632 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:08:58 - deerflow.runtime.runs.manager - INFO - Run created: run_id=3e8099c5-6057-4132-9b55-25310b5ad6a9 thread_id=917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:08:58 - deerflow.runtime.runs.worker - INFO - Run 3e8099c5-6057-4132-9b55-25310b5ad6a9: 'events' stream_mode not supported in gateway (requires astream_events + checkpoint callbacks). Skipping.
+INFO:     127.0.0.1:53631 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs/stream HTTP/1.1" 200 OK
+2026-05-14 11:08:58 - deerflow.runtime.runs.manager - INFO - Run 3e8099c5-6057-4132-9b55-25310b5ad6a9 -> running
+2026-05-14 11:08:58 - deerflow.agents.lead_agent.agent - INFO - Create Agent(default) -> thinking_enabled: False, reasoning_effort: medium, model_name: deepseek-chat, is_plan_mode: False, subagent_enabled: False, max_concurrent_subagents: 3
+2026-05-14 11:08:58 - deerflow.tools.tools - INFO - Total tools loaded: 11, built-in tools: 2, MCP tools: 0, ACP tools: 0
+2026-05-14 11:08:58 - deerflow.runtime.runs.worker - INFO - Run 3e8099c5-6057-4132-9b55-25310b5ad6a9: streaming with modes ['messages', 'values', 'custom', 'updates'] (requested: {'messages-tuple', 'values', 'events', 'custom', 'updates'})
+2026-05-14 11:08:58 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:09:29 - deerflow.community.ragflow.tools - ERROR - Failed to search RAGFlow at http://192.168.0.200:8083/api/v1/retrieval: timed out
+2026-05-14 11:09:29 - deerflow.community.ragflow.tools - WARNING - RAGFlow returned success but no chunks. Raw data: {'error': 'timed out'}
+2026-05-14 11:09:30 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:09:33 - deerflow.agents.memory.queue - INFO - Memory update queued for thread 917dda4c-0e8c-497b-af6e-6317630239e2, queue size: 1
+2026-05-14 11:09:33 - deerflow.runtime.runs.manager - INFO - Run 3e8099c5-6057-4132-9b55-25310b5ad6a9 -> success
+INFO:     127.0.0.1:53957 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53956 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53959 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:09:39 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:53961 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/suggestions HTTP/1.1" 200 OK
+2026-05-14 11:10:03 - deerflow.agents.memory.queue - INFO - Processing 1 queued memory updates
+2026-05-14 11:10:03 - deerflow.agents.memory.queue - INFO - Updating memory for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:10:03 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:10:11 - deerflow.agents.memory.storage - INFO - Memory saved to D:\AI\test\deer-flow\backend\.deer-flow\users\9f2eaf7f-b57a-4017-bbb0-5c96ec728e29\memory.json
+2026-05-14 11:10:11 - deerflow.agents.memory.queue - INFO - Memory updated successfully for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+INFO:     127.0.0.1:54008 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54092 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:11:35 - deerflow.runtime.runs.manager - INFO - Run created: run_id=73bdf2fa-0d08-4d43-946f-19c1f461d614 thread_id=917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:11:35 - deerflow.runtime.runs.worker - INFO - Run 73bdf2fa-0d08-4d43-946f-19c1f461d614: 'events' stream_mode not supported in gateway (requires astream_events + checkpoint callbacks). Skipping.
+INFO:     127.0.0.1:54091 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs/stream HTTP/1.1" 200 OK
+2026-05-14 11:11:35 - deerflow.runtime.runs.manager - INFO - Run 73bdf2fa-0d08-4d43-946f-19c1f461d614 -> running
+2026-05-14 11:11:35 - deerflow.agents.lead_agent.agent - INFO - Create Agent(default) -> thinking_enabled: False, reasoning_effort: medium, model_name: deepseek-chat, is_plan_mode: False, subagent_enabled: False, max_concurrent_subagents: 3
+2026-05-14 11:11:35 - deerflow.tools.tools - INFO - Total tools loaded: 11, built-in tools: 2, MCP tools: 0, ACP tools: 0
+2026-05-14 11:11:35 - deerflow.runtime.runs.worker - INFO - Run 73bdf2fa-0d08-4d43-946f-19c1f461d614: streaming with modes ['messages', 'values', 'custom', 'updates'] (requested: {'messages-tuple', 'values', 'events', 'custom', 'updates'})
+2026-05-14 11:11:35 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:11:40 - httpx - INFO - HTTP Request: POST http://192.168.0.200:8083/api/v1/retrieval "HTTP/1.1 200 "
+2026-05-14 11:11:41 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:11:43 - deerflow.agents.memory.queue - INFO - Memory update queued for thread 917dda4c-0e8c-497b-af6e-6317630239e2, queue size: 1
+2026-05-14 11:11:43 - deerflow.runtime.runs.manager - INFO - Run 73bdf2fa-0d08-4d43-946f-19c1f461d614 -> success
+INFO:     127.0.0.1:54134 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54136 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:11:45 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54138 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/suggestions HTTP/1.1" 200 OK
+2026-05-14 11:12:13 - deerflow.agents.memory.queue - INFO - Processing 1 queued memory updates
+2026-05-14 11:12:13 - deerflow.agents.memory.queue - INFO - Updating memory for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:12:13 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:12:21 - deerflow.agents.memory.storage - INFO - Memory saved to D:\AI\test\deer-flow\backend\.deer-flow\users\9f2eaf7f-b57a-4017-bbb0-5c96ec728e29\memory.json
+2026-05-14 11:12:21 - deerflow.agents.memory.queue - INFO - Memory updated successfully for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+INFO:     127.0.0.1:54164 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:12:30 - deerflow.runtime.runs.manager - INFO - Run created: run_id=9f300fbf-af06-449f-a83b-99b75ac3b9a2 thread_id=917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:12:30 - deerflow.runtime.runs.worker - INFO - Run 9f300fbf-af06-449f-a83b-99b75ac3b9a2: 'events' stream_mode not supported in gateway (requires astream_events + checkpoint callbacks). Skipping.
+INFO:     127.0.0.1:54163 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs/stream HTTP/1.1" 200 OK
+2026-05-14 11:12:30 - deerflow.runtime.runs.manager - INFO - Run 9f300fbf-af06-449f-a83b-99b75ac3b9a2 -> running
+2026-05-14 11:12:30 - deerflow.agents.lead_agent.agent - INFO - Create Agent(default) -> thinking_enabled: False, reasoning_effort: medium, model_name: deepseek-chat, is_plan_mode: False, subagent_enabled: False, max_concurrent_subagents: 3
+2026-05-14 11:12:30 - deerflow.tools.tools - INFO - Total tools loaded: 11, built-in tools: 2, MCP tools: 0, ACP tools: 0
+2026-05-14 11:12:30 - deerflow.runtime.runs.worker - INFO - Run 9f300fbf-af06-449f-a83b-99b75ac3b9a2: streaming with modes ['messages', 'values', 'custom', 'updates'] (requested: {'messages-tuple', 'values', 'events', 'custom', 'updates'})
+2026-05-14 11:12:30 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:12:38 - httpx - INFO - HTTP Request: POST http://192.168.0.200:8083/api/v1/retrieval "HTTP/1.1 200 "
+2026-05-14 11:12:38 - httpx - INFO - HTTP Request: POST http://192.168.0.200:8083/api/v1/retrieval "HTTP/1.1 200 "
+2026-05-14 11:12:38 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54184 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+2026-05-14 11:12:41 - deerflow.agents.memory.queue - INFO - Memory update queued for thread 917dda4c-0e8c-497b-af6e-6317630239e2, queue size: 1
+2026-05-14 11:12:41 - deerflow.runtime.runs.manager - INFO - Run 9f300fbf-af06-449f-a83b-99b75ac3b9a2 -> success
+INFO:     127.0.0.1:54187 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54189 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:12:45 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54191 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/suggestions HTTP/1.1" 200 OK
+2026-05-14 11:13:11 - deerflow.agents.memory.queue - INFO - Processing 1 queued memory updates
+2026-05-14 11:13:11 - deerflow.agents.memory.queue - INFO - Updating memory for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:13:11 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:13:20 - deerflow.agents.memory.storage - INFO - Memory saved to D:\AI\test\deer-flow\backend\.deer-flow\users\9f2eaf7f-b57a-4017-bbb0-5c96ec728e29\memory.json
+2026-05-14 11:13:20 - deerflow.agents.memory.queue - INFO - Memory updated successfully for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+INFO:     127.0.0.1:54249 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:13:29 - deerflow.runtime.runs.manager - INFO - Run created: run_id=d3f11bc9-7c63-4b6a-b482-5ffcbc2329b8 thread_id=917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:13:29 - deerflow.runtime.runs.worker - INFO - Run d3f11bc9-7c63-4b6a-b482-5ffcbc2329b8: 'events' stream_mode not supported in gateway (requires astream_events + checkpoint callbacks). Skipping.
+INFO:     127.0.0.1:54248 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/runs/stream HTTP/1.1" 200 OK
+2026-05-14 11:13:29 - deerflow.runtime.runs.manager - INFO - Run d3f11bc9-7c63-4b6a-b482-5ffcbc2329b8 -> running
+2026-05-14 11:13:29 - deerflow.agents.lead_agent.agent - INFO - Create Agent(default) -> thinking_enabled: False, reasoning_effort: medium, model_name: deepseek-chat, is_plan_mode: False, subagent_enabled: False, max_concurrent_subagents: 3
+2026-05-14 11:13:29 - deerflow.tools.tools - INFO - Total tools loaded: 11, built-in tools: 2, MCP tools: 0, ACP tools: 0
+2026-05-14 11:13:29 - deerflow.runtime.runs.worker - INFO - Run d3f11bc9-7c63-4b6a-b482-5ffcbc2329b8: streaming with modes ['messages', 'values', 'custom', 'updates'] (requested: {'messages-tuple', 'values', 'events', 'custom', 'updates'})
+2026-05-14 11:13:30 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:13:37 - httpx - INFO - HTTP Request: POST http://192.168.0.200:8083/api/v1/retrieval "HTTP/1.1 200 "
+2026-05-14 11:13:37 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:13:39 - deerflow.agents.memory.queue - INFO - Memory update queued for thread 917dda4c-0e8c-497b-af6e-6317630239e2, queue size: 1
+2026-05-14 11:13:39 - deerflow.runtime.runs.manager - INFO - Run d3f11bc9-7c63-4b6a-b482-5ffcbc2329b8 -> success
+INFO:     127.0.0.1:54261 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/history HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54263 - "POST /api/threads/search HTTP/1.1" 200 OK
+2026-05-14 11:13:41 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:54266 - "POST /api/threads/917dda4c-0e8c-497b-af6e-6317630239e2/suggestions HTTP/1.1" 200 OK
+2026-05-14 11:14:09 - deerflow.agents.memory.queue - INFO - Processing 1 queued memory updates
+2026-05-14 11:14:09 - deerflow.agents.memory.queue - INFO - Updating memory for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+2026-05-14 11:14:10 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-05-14 11:14:21 - deerflow.agents.memory.storage - INFO - Memory saved to D:\AI\test\deer-flow\backend\.deer-flow\users\9f2eaf7f-b57a-4017-bbb0-5c96ec728e29\memory.json
+2026-05-14 11:14:21 - deerflow.agents.memory.queue - INFO - Memory updated successfully for thread 917dda4c-0e8c-497b-af6e-6317630239e2
+INFO:     127.0.0.1:54447 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54649 - "GET /api/v1/auth/me HTTP/1.1" 200 OK
