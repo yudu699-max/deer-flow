@@ -1,6 +1,3 @@
-"""
-RAGFlow Search Tool - Search RAGFlow knowledge base.
-"""
 import json
 import logging
 import os
@@ -62,7 +59,7 @@ def ragflow_search_tool(
     # 1. 获取环境变量中的所有默认 ID，避免仅显式地传递第一个id
     env_dataset_id = os.getenv("RAGFLOW_DATASET_ID")
     env_ids = [id.strip().strip("'\"").strip() for id in env_dataset_id.split(",") if id.strip()]
-    # 2. 如果 Agent 传了额外的 ID，将其加入列表并去重
+       
     if dataset_id:
         dataset_ids = [id.strip().strip("'\"").strip() for id in dataset_id.split(",") if id.strip()]
         all_ids = list(set(env_ids + dataset_ids))
@@ -78,11 +75,11 @@ def ragflow_search_tool(
         api_key=api_key,
         topk=topk,
     )
-    res_json = result
-    data = res_json.get("data", {})
-    # 兼容两种可能的返回结构
-    chunks = data.get("chunks", []) if isinstance(data, dict) else (data if isinstance(data, list) else [])
-        
+
+    # RAGFlow 官方 API 返回结构: { "code": 0, "data": { "chunks": [...] } }
+    chunks = result.get("data", {}).get("chunks", [])
+
+    logger.info(f"RAGFlow returned {len(chunks)} chunks for query: {question[:50]}...")
 
     formatted_results = []
     for i, chunk in enumerate(chunks, 1):
