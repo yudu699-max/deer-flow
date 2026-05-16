@@ -18,12 +18,19 @@ def _query_ragflow(
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
+    
+    # 使用传入的 ID 列表
     payload = {
         "question": question,
+        "dataset_ids": dataset_ids,
         "dataset_ids": dataset_ids,
         "page": 1,
         "page_size": topk,
     }
+
+    cross_langs = os.getenv("RAGFLOW_CROSS_LANGUAGES")
+    if cross_langs:
+        payload["cross_languages"] = [lang.strip() for lang in cross_langs.split(",")]
 
     cross_langs = os.getenv("RAGFLOW_CROSS_LANGUAGES")
     if cross_langs:
@@ -49,6 +56,8 @@ def ragflow_search_tool(
 
     Args:
         question: 搜索关键词或用户的问题。
+        dataset_id: 可选。要查询的一个或多个数据集 ID（多个 ID 用逗号分隔）。如果未提供，将使用环境变量 RAGFLOW_DATASET_ID。
+        topk: 返回的相关结果数量。默认为 10。
         dataset_id: 可选。要查询的一个或多个数据集 ID（多个 ID 用逗号分隔）。如果未提供，将使用环境变量 RAGFLOW_DATASET_ID。
         topk: 返回的相关结果数量。默认为 10。
     """
@@ -92,8 +101,10 @@ def ragflow_search_tool(
             f"{content}\n"
         )
 # 组装最终返回给 Agent 的结果对象
+# 组装最终返回给 Agent 的结果对象
     output = {
         "question": question,
+        "dataset_ids": all_ids,
         "dataset_ids": all_ids,
         "count": len(chunks),
         "results": "\n---\n".join(formatted_results)
